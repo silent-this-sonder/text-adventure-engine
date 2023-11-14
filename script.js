@@ -1,5 +1,15 @@
 // HTML elements
-const choices_div = document.getElementById("choices")
+const story_div = document.getElementById("story-view");
+const story_location = story_div.children[0];
+const story_p = story_div.children[1];
+
+const choices_div = document.getElementById("choices");
+
+
+// function to change location
+function change_location(newLocation) {
+    story_location.innerHTML = newLocation;
+};
 
 
 // function to create a choice button
