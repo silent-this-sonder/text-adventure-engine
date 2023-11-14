@@ -26,3 +26,59 @@ function create_choice(text, action) {
     choices_div.appendChild(newButton);
     return newButton;
 };
+
+
+// Game data
+let current_id = 0;
+let GAME_TREE = {}; // object to store all the scenarios
+
+function create_scenario(location, text) {
+    let my_id = current_id++;
+    let my_info = {
+        "id": my_id,
+        "location": location,
+        "text": text,
+        "choices": []
+    };
+
+    GAME_TREE[my_id] = my_info;
+    return my_id;
+};
+
+function create_scenario_choice(parent_scenario_id, choice_text, linked_scenario_id) {
+    let my_parent_id = parent_scenario_id;
+    let my_text = choice_text;
+    let my_link_id = linked_scenario_id;
+
+    let my_info = {
+        "link_id": my_link_id,
+        "text": my_text
+    };
+
+    GAME_TREE[my_parent_id].choices.push(my_info);
+    return my_link_id
+};
+
+
+// change the HTML to reflect the scenario
+function display_scenario(scenario_id) {
+    let me = GAME_TREE[scenario_id];
+    let my_choices = me.choices
+    change_location(me.location);
+    change_story_text(me.text);
+    // create the choices
+    choices_div.innerHTML = ""
+    for (let i = 0;
+        i < my_choices.length;
+        i = ++i) {
+            create_choice(my_choices[i].text,
+                () => {
+                    display_scenario(my_choices[i].link_id) // links to the next scenario
+                });
+    };
+};
+
+create_scenario("Start", "Welcome traveler!");
+create_scenario("Phase 2", "HOLA");
+create_scenario_choice(0, "onward", 1);
+display_scenario(0)
