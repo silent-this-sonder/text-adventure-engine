@@ -80,8 +80,3 @@ function display_scenario(scenario_id) {
                 });
     };
 };
-
-create_scenario("Start", "Welcome traveler!");
-create_scenario("Phase 2", "HOLA");
-create_scenario_choice(0, "onward", 1);
-display_scenario(0)
