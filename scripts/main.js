@@ -1,3 +1,6 @@
+// script that holds the engine for the game
+
+
 // HTML elements
 const story_div = document.getElementById("story-view");
 const story_location = story_div.children[0];
