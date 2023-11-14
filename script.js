@@ -12,6 +12,12 @@ function change_location(newLocation) {
 };
 
 
+// function to change the story description
+function change_story_text(text) {
+    story_p.innerHTML = text
+};
+
+
 // function to create a choice button
 function create_choice(text, action) {
     let newButton = document.createElement('button');
